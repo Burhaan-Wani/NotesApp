@@ -1,0 +1,323 @@
+{% if request.session.email1 %} {% load static %}
+<script>
+    window.location.href = "/NoteApp";
+</script>
+{% else %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>InkScribe</title>
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div
+                    class="col-11 col-sm-10 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-2"
+                >
+                    <div
+                        class="card shadow_card_box px-xl-4 px-3 pt-3 pb-0 mt-2 mb-0"
+                    >
+                        <h2 id="heading">Sign Up Your User Account</h2>
+                        <p>Fill all form field to go to next step</p>
+                        <form id="msform" method="post">
+                            <!-- progressbar -->
+                            {% csrf_token %}
+                            <ul id="progressbar">
+                                <li class="active" id="account">
+                                    <strong>Account</strong>
+                                </li>
+                                <li id="personal">
+                                    <strong>OTP Verification</strong>
+                                </li>
+                                <!-- <li id="payment"><strong>Image</strong></li> -->
+                                <li id="confirm"><strong>Finish</strong></li>
+                            </ul>
+                            <div class="progress">
+                                <div
+                                    class="progress-bar progress-bar-striped progress-bar-animated"
+                                    role="progressbar"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"
+                                ></div>
+                            </div>
+                            <br />
+                            <!-- fieldsets -->
+                            <fieldset id="signup_form" class="fieldset1">
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">
+                                                Account Information:
+                                            </h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 1 - 3</h2>
+                                        </div>
+                                    </div>
+                                    <label class="fieldlabels">Email: *</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="JohnDoe@gmail.com"
+                                    />
+                                    <label class="fieldlabels"
+                                        >Username: *</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="uname"
+                                        placeholder="UserName"
+                                    />
+                                    <label class="fieldlabels"
+                                        >Password: *</label
+                                    >
+                                    <input
+                                        type="password"
+                                        name="pwd"
+                                        placeholder="Password"
+                                    />
+                                    <label class="fieldlabels"
+                                        >Confirm Password: *</label
+                                    >
+                                    <input
+                                        type="password"
+                                        name="cpwd"
+                                        placeholder="Confirm Password"
+                                    />
+                                    <div>
+                                        <small
+                                            id="er1"
+                                            class="text-danger m-0 p-0"
+                                        ></small>
+                                    </div>
+                                </div>
+                                <input
+                                    id="next1"
+                                    type="submit"
+                                    name="next"
+                                    class="submit1 action-button"
+                                    value="Next"
+                                />
+                            </fieldset>
+
+                            <fieldset class="fieldset2">
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">
+                                                Verify Information:
+                                            </h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 2 - 3</h2>
+                                        </div>
+                                    </div>
+                                    <!-- <label class="fieldlabels">Email: *</label>
+                  {% if request.session.email %}
+                  <input
+                    type="text"
+                    name="verifyEmail"
+                    value="{{request.session.email}}"
+                    placeholder="JohnDoe@gmail.com"
+                    disabled
+                  />
+                  {% endif %} -->
+
+                                    <label class="fieldlabels">OTP: *</label>
+                                    <div class="input-group">
+                                        <input
+                                            class="mb-1"
+                                            style="width: 75%"
+                                            id="otp-input"
+                                            type="text"
+                                            name="otp"
+                                            placeholder="1234"
+                                            min="4"
+                                            max="4"
+                                        />
+                                        <input
+                                            class="mb-1"
+                                            style="width: 25%"
+                                            type="button"
+                                            id="otp-button"
+                                            value="Send OTP"
+                                        />
+                                    </div>
+                                    <div>
+                                        <small class="text-muted"
+                                            >Wait 3 to 4 seconds when clicking
+                                            'send OTP'</small
+                                        >
+                                    </div>
+                                    <div>
+                                        <small
+                                            id="er2"
+                                            class="text-danger m-0 p-0"
+                                        ></small>
+                                    </div>
+                                </div>
+
+                                <input
+                                    type="submit"
+                                    class="submit2 action-button"
+                                    value="Next"
+                                />
+                                <!-- <input
+                                    type="button"
+                                    name="previous"
+                                    class="previous action-button-previous"
+                                    value="Previous"
+                                /> -->
+                            </fieldset>
+
+                            <fieldset class="fieldset7">
+                                <div class="form-card">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <h2 class="fs-title">Finish:</h2>
+                                        </div>
+                                        <div class="col-5">
+                                            <h2 class="steps">Step 3 - 3</h2>
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                    <h2 class="purple-text text-center">
+                                        <strong>SUCCESS !</strong>
+                                    </h2>
+                                    <br />
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <img
+                                                src="https://i.imgur.com/GwStPmg.png"
+                                                class="fit-image"
+                                            />
+                                        </div>
+                                    </div>
+                                    <br /><br />
+                                    <div class="row justify-content-center">
+                                        <div class="col-7 text-center">
+                                            <h5 class="purple-text text-center">
+                                                You Have Successfully Signed Up
+                                            </h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/signup.js' %}"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            $("#msform").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    // create an AJAX call...
+                    data: $("#msform").serialize(), // get the form data
+                    type: "POST", // GET or POST
+                    url: "/signup/",
+                    success: function (response) {
+                        // on success..
+                        if (
+                            response ==
+                            "Email must start with small case alphabet."
+                        ) {
+                            $("#er1").text(response);
+                        } else if (
+                            response ==
+                            "User with this email id already exists."
+                        ) {
+                            $("#er1").text(response);
+                        } else if (
+                            response ==
+                            "Username must start with capital case letter."
+                        ) {
+                            $("#er1").text(response);
+                        } else if (
+                            response ==
+                            "Minimum 8+ chars, atleast 1 Uppercase, 1 Lowercase, 1 Number, and 1 special Chars."
+                        ) {
+                            $("#er1").text(response);
+                        } else if (
+                            response ==
+                            "Password and Confirm Password does not match."
+                        ) {
+                            $("#er1").text(response);
+                        } else if (response == "submit") {
+                            $("#er1").text("");
+                            $(".fieldset1").addClass("d-none");
+                            $(".fieldset2").removeClass("d-none");
+                            $(".fieldset2").addClass("d-block");
+                            $(".progress-bar").css("width", "67%");
+                            $("#personal").addClass("active");
+                        } else if (response == "fields can't be left blank.") {
+                            $("#er1").text(response);
+                        } else if (response == "otp matched") {
+                            $("#er2").text("");
+                            setTimeout(() => {
+                                $(".fieldset2").addClass("d-none");
+                                $(".fieldset7").addClass("d-block");
+                                $(".progress-bar").css("width", "100%");
+                                $("#confirm").addClass("active");
+                            }, 700);
+                            setTimeout(() => {
+                                window.location.href = "/login";
+                            }, 1000);
+                        } else if (response == "Please enter OTP first.") {
+                            $("#er2").text(response);
+                        } else if (response == "Incorrect OTP.") {
+                            $("#er2").text(response);
+                        } else {
+                            $("#er1").text("");
+                        }
+                    },
+                });
+            });
+        </script>
+
+        <script>
+            $("#otp-button").on("click", function () {
+                $.ajax({
+                    type: "GET", // GET or POST
+                    url: "/otp/", // the file to call
+                    success: function (response) {
+                        if (
+                            response ==
+                            "OTP has been sent, check your email id."
+                        ) {
+                            $("#er2").text(response);
+                        }
+                    },
+                });
+            });
+        </script>
+    </body>
+</html>
+{% endif %}
