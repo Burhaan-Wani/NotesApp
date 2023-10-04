@@ -1,10 +1,11 @@
-{% if request.session.email1 %} {% load static %}
+{% if request.session.email1 %} 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InkScribe</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/noteApp.css' %}" />
     <link
       rel="stylesheet"

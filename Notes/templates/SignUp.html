@@ -1,4 +1,4 @@
-{% if request.session.email1 %} {% load static %}
+{% if request.session.email1 %} 
 <script>
     window.location.href = "/NoteApp";
 </script>
@@ -9,6 +9,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>InkScribe</title>
+        {% load static %}
         <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
         <link
             rel="stylesheet"
