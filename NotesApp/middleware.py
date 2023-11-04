@@ -11,12 +11,9 @@ class demo_middleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-
-        if (
-            request.path == "/NoteApp/"
-            or request.path == "/demo/"
-            and "email1" not in request.session
-        ):
-            return redirect("/login/")
+        path = ["NoteApp", "demo"]
+        for _ in path:
+            if request.path == f"/{_}/" and "email1" not in request.session:
+                return redirect("/login/")
 
         return response
