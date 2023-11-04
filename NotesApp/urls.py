@@ -16,17 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
 from Notes import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('signup/', views.Signup),
-    path('otp/', views.SendOtp),
-    path('', views.Login),
-    path('login/', views.Login),
-    path('logout/', views.Logout),
-    path('delete/<int:id>',views.Delete),
-    path('identify/', views.forgotPassword),
-    path('resetotp/', views.resetOtp),
-    path('NoteApp/', views.NoteApp),
+    path("admin/", admin.site.urls),
+    path("signup/", views.Signup),
+    path("otp/", views.SendOtp),
+    path("", views.Login),
+    path("login/", views.Login),
+    path("logout/", views.Logout),
+    path("delete/<int:id>", views.Delete),
+    path("identify/", views.forgotPassword),
+    path("resetotp/", views.resetOtp),
+    path("NoteApp/", views.NoteApp),
+    path("demo/", views.Demo),
 ]

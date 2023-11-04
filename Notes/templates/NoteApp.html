@@ -1,188 +1,217 @@
-{% if request.session.email1 %} 
+<!-- {% if request.session.email1 %}  -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>InkScribe</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/noteApp.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container">
-        <a href="" class="navbar-brand text-white">InkScribe</a>
-        <button id="logout" class="btn btn-outline-light px-3 rounded-pill">
-          Logout
-        </button>
-      </div>
-    </nav>
-    <div class="container-fluid main">
-      <div class="row">
-        <div class="col-md-2 d-md-block d-none add-note-div">
-          <div>
-            <div class="content rounded-3">
-              <div class="buttons rounded-3 d-grid mt-2 bg-dark">
-                <div id="one" class="button rounded-2 m-0">Add Note</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="notes-div col-md-10">
-          <div id="modal-container">
-            <div class="modal-background">
-              <div class="modal px-3 py-0">
-                <div class="row">
-                  <div class="col">
-                    <form id="msform" class="msform3" method="post">
-                      {% csrf_token %}
-                      <fieldset class="text-start p-0 m-0">
-                        <div class="clearfix">
-                          <button
-                            id="closeBtn"
-                            class="btn-close float-end"
-                          ></button>
-                        </div>
-                        <h2 id="heading" class="text-center">
-                          Take a Note to remember
-                        </h2>
-                        <label class="fieldlabels">Title: *</label>
-                        <input
-                          class="mb-3"
-                          type="text"
-                          placeholder="Title of Note..."
-                          name="noteTitle"
-                        />
-                        <input
-                          type="hidden"
-                          placeholder=""
-                          name="userId"
-                          value="{{request.session.id}}"
-                        />
-                        <label class="fieldlabels">Description: *</label>
-                        <textarea
-                          class="mb-2"
-                          name="description"
-                          cols="30"
-                          rows="5"
-                          placeholder="Your Description"
-                        ></textarea>
-                        <div>
-                          <small id="er9" class="text-danger p-0 m-0"></small>
-                        </div>
-                        <input
-                          type="submit"
-                          name="next"
-                          class="next action-button"
-                          value="Submit"
-                        />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row g-4 pe-1">
-            {% for notes in userNotes %}
-            <div class="col-md-6 col-xl-4">
-              <div class="card pb-2 border-0 rounded-0">
-                <div class="card-body">
-                  <p class="card-title text-white">{{notes.title}}</p>
-                  <p class="card-text pb-2">{{notes.description}}</p>
-                  <a href="/delete/{{notes.id}}" class="card-btn">Delete</a>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-            <div class="clearfix d-md-none d-block">
-              <button id="one" class="float-end plus-btn">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="22"
-                  height="22"
-                  fill="currentColor"
-                  class="bi bi-plus-lg fw-bolder"
-                  viewBox="0 0 16 16"
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>InkScribe</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/noteApp.css' %}" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a href="" class="navbar-brand text-white">InkScribe</a>
+                <button
+                    id="logout"
+                    class="btn btn-outline-light px-3 rounded-pill"
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-                  />
-                </svg>
-              </button>
+                    Logout
+                </button>
             </div>
-          </div>
+        </nav>
+        <div class="container-fluid main">
+            <div class="row">
+                <div class="col-md-2 d-md-block d-none add-note-div">
+                    <div>
+                        <div class="content rounded-3">
+                            <div class="buttons rounded-3 d-grid mt-2 bg-dark">
+                                <div id="one" class="button rounded-2 m-0">
+                                    Add Note
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notes-div col-md-10">
+                    <div id="modal-container">
+                        <div class="modal-background">
+                            <div class="modal px-3 py-0">
+                                <div class="row">
+                                    <div class="col">
+                                        <form
+                                            id="msform"
+                                            class="msform3"
+                                            method="post"
+                                        >
+                                            {% csrf_token %}
+                                            <fieldset
+                                                class="text-start p-0 m-0"
+                                            >
+                                                <div class="clearfix">
+                                                    <button
+                                                        id="closeBtn"
+                                                        class="btn-close float-end"
+                                                    ></button>
+                                                </div>
+                                                <h2
+                                                    id="heading"
+                                                    class="text-center"
+                                                >
+                                                    Take a Note to remember
+                                                </h2>
+                                                <label class="fieldlabels"
+                                                    >Title: *</label
+                                                >
+                                                <input
+                                                    class="mb-3"
+                                                    type="text"
+                                                    placeholder="Title of Note..."
+                                                    name="noteTitle"
+                                                />
+                                                <input
+                                                    type="hidden"
+                                                    placeholder=""
+                                                    name="userId"
+                                                    value="{{request.session.id}}"
+                                                />
+                                                <label class="fieldlabels"
+                                                    >Description: *</label
+                                                >
+                                                <textarea
+                                                    class="mb-2"
+                                                    name="description"
+                                                    cols="30"
+                                                    rows="5"
+                                                    placeholder="Your Description"
+                                                ></textarea>
+                                                <div>
+                                                    <small
+                                                        id="er9"
+                                                        class="text-danger p-0 m-0"
+                                                    ></small>
+                                                </div>
+                                                <input
+                                                    type="submit"
+                                                    name="next"
+                                                    class="next action-button"
+                                                    value="Submit"
+                                                />
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row g-4 pe-1">
+                        {% for notes in userNotes %}
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card pb-2 border-0 rounded-0">
+                                <div class="card-body">
+                                    <p class="card-title text-white">
+                                        {{notes.title}}
+                                    </p>
+                                    <p class="card-text pb-2">
+                                        {{notes.description}}
+                                    </p>
+                                    <a
+                                        href="/delete/{{notes.id}}"
+                                        class="card-btn"
+                                        >Delete</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="clearfix d-md-none d-block">
+                            <button id="one" class="float-end plus-btn">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="22"
+                                    height="22"
+                                    fill="currentColor"
+                                    class="bi bi-plus-lg fw-bolder"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+                                    />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="{% static 'js/noteApp.js' %}"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="{% static 'js/noteApp.js' %}"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
 
-    <script>
-      $(".msform3").submit(function (e) {
-        e.preventDefault();
-        $.ajax({
-          // create an AJAX call...
-          data: $(".msform3").serialize(), // get the form data
-          type: "POST", // GET or POST
-          url: "/NoteApp/",
-          success: function (response) {
-            // on success..
-            if (response == "Fields can't be left blank.") {
-              $("#er9").text(response);
-            } else if (response == "note saved.") {
-              $("#er9").text("");
-              setTimeout(() => {
-                $("#modal-container").addClass("out");
-                $("#msform")[0].reset();
-                window.location.reload();
-              }, 200);
-            }
-          },
-        });
-      });
-    </script>
-    <script>
-      $("#logout").on("click", function () {
-        $.ajax({
-          type: "GET", // GET or POST
-          url: "/logout/", // the file to call
-          success: function (response) {
-            if (response == "logout") {
-              window.location.href = "/login";
-            }
-          },
-        });
-      });
-    </script>
+        <script>
+            $(".msform3").submit(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    // create an AJAX call...
+                    data: $(".msform3").serialize(), // get the form data
+                    type: "POST", // GET or POST
+                    url: "/NoteApp/",
+                    success: function (response) {
+                        // on success..
+                        if (response == "Fields can't be left blank.") {
+                            $("#er9").text(response);
+                        } else if (response == "note saved.") {
+                            $("#er9").text("");
+                            setTimeout(() => {
+                                $("#modal-container").addClass("out");
+                                $("#msform")[0].reset();
+                                window.location.reload();
+                            }, 200);
+                        }
+                    },
+                });
+            });
+        </script>
+        <script>
+            $("#logout").on("click", function () {
+                $.ajax({
+                    type: "GET", // GET or POST
+                    url: "/logout/", // the file to call
+                    success: function (response) {
+                        if (response == "logout") {
+                            window.location.href = "/login";
+                        }
+                    },
+                });
+            });
+        </script>
 
-    {% else %}
-    <script>
-      window.location.href = "/login";
-    </script>
-  </body>
+        {% else %}
+        <script>
+            window.location.href = "/login";
+        </script>
+    </body>
 </html>
-{% endif %}
+<!-- {% endif %} -->
