@@ -58,7 +58,7 @@ def Signup(request):
                 for userStatus in activeUser:
                     userStatus.status = "active"
                     userStatus.save()
-                # request.session['email']
+                del request.session["email"]
                 del request.session["random"]
                 return HttpResponse("otp matched")
             else:
@@ -70,7 +70,7 @@ def Signup(request):
             and pwd == cpwd
             and (pwd_regEx.search(pwd))
         ):
-            # request.session['email'] = email
+            request.session["email"] = email
             return HttpResponse("submit")
 
         elif pwd != cpwd and (pwd_regEx.search(pwd)):
