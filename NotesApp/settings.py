@@ -62,6 +62,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "NotesApp.urls"
+CSRF_TRUSTED_ORIGINS = ["https://inkscribe.up.railway.app"]
 
 TEMPLATES = [
     {
