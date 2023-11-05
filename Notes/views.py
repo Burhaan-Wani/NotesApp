@@ -126,7 +126,7 @@ def Login(request):
 def resetOtp(request):
     request.session["random1"] = random.randint(1000, 9999)
     mail_subject = "Your otp for reset password is " + str(request.session["random1"])
-    email = EmailMessage("Hi there", mail_subject, to=[request.session["email"]])
+    email = EmailMessage("Hi there", mail_subject, to=[request.session["email3"]])
     email.send()
     return HttpResponse("OTP has been sent, check your mail.")
 
@@ -180,6 +180,7 @@ def forgotPassword(request):
         if request.POST.get("resetOtp"):
             resetOTP = request.POST.get("resetOtp")
             if int(resetOTP) == int(request.session["random1"]):
+                del request.session["email3"]
                 return HttpResponse("match")
             else:
                 return HttpResponse("incorrect OTP")
