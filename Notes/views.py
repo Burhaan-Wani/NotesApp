@@ -180,7 +180,6 @@ def forgotPassword(request):
         if request.POST.get("resetOtp"):
             resetOTP = request.POST.get("resetOtp")
             if int(resetOTP) == int(request.session["random1"]):
-                del request.session["email3"]
                 return HttpResponse("match")
             else:
                 return HttpResponse("incorrect OTP")
