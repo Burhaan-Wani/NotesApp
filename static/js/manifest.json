@@ -1,0 +1,23 @@
+{
+    "short_name": "InkScribe",
+    "name": "InkScribe",
+    "icons": [
+        {
+            "src": "assets/logo.png",
+            "type": "image/png",
+            "sizes": "500x500",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "assets/logo.png",
+            "type": "image/png",
+            "sizes": "2321x938",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "white",
+    "theme_color": "green",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}
