@@ -19,11 +19,21 @@
             referrerpolicy="no-referrer"
         />
         <style>
-            .card-title {
-                max-width: 375px;
-            }
-            .card-text {
-                max-width: 375px;
+            @media (width < 768px) {
+                .modal-background .modal {
+                    width: 75%;
+                    height: 55%;
+                    z-index: 100;
+                }
+                .msform3 #closeBtn {
+                    margin-bottom: 10px;
+                }
+                .card-title {
+                    width: 370px;
+                }
+                .card-text {
+                    width: 370px;
+                }
             }
         </style>
     </head>

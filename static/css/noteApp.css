@@ -874,13 +874,11 @@ p {
 .card-title {
     font-size: 1.5em;
     font-weight: 600;
-    max-width: 370px !important;
     color: rgb(241, 241, 241);
     z-index: 2;
 }
 .card-text {
     font-size: 0.9em;
-    max-width: 370px !important;
     color: rgb(241, 241, 241);
     z-index: 2;
 }
@@ -918,7 +916,7 @@ p {
     background-color: rgb(56, 56, 56);
 }
 
-@media (width < 768px) {
+/* @media (width < 768px) {
     .modal-background .modal {
         width: 75%;
         height: 55%;
@@ -927,7 +925,7 @@ p {
     .msform3 #closeBtn {
         margin-bottom: 10px;
     }
-}
+} */
 @media (768px <= width <= 992px) {
     .modal-background .modal {
         width: 60%;
