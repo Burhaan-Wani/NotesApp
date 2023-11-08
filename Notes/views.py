@@ -96,8 +96,8 @@ def SendOtp(request):
 
 # <-------------------Login------------------>
 def Login(request):
-    # del request.session['email1']
-    # del request.session['id']
+    # del request.session["email1"]
+    # del request.session["id"]
     if request.method == "POST":
         if (not request.POST.get("email2")) and (not request.POST.get("password")):
             return HttpResponse("fields can't be left blank.")
