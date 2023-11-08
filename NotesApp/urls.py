@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from Notes import views
 
@@ -33,5 +33,6 @@ urlpatterns = [
     path("resetotp/", views.resetOtp),
     path("NoteApp/", views.NoteApp),
     path("demo/", views.Demo),
+    path("", include("pwa.urls")),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

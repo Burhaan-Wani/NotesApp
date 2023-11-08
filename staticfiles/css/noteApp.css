@@ -30,21 +30,21 @@ body.modal-active {
 }
 
 .main {
-    height: 100vh;
-    /* overflow: hidden; */
+    height: 100%;
+    overflow: hidden;
 }
 
 .add-note-div {
-    height: 100vh;
+    height: 100%;
     padding-top: 62px;
-    background-color: #343541;
+    background-color: #212fc4;
 }
 .notes-div {
     padding-top: 70px;
     overflow-y: scroll;
     scroll-behavior: smooth;
     background-color: #faf3f0;
-    height: 100vh;
+    height: 100%;
 }
 ::-webkit-scrollbar {
     display: none;
