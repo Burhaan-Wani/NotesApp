@@ -928,6 +928,7 @@ p {
         margin-bottom: 10px;
     }
     .card-title {
+        color: red;
         max-width: 335px;
     }
     .card-text {
