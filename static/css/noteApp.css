@@ -874,13 +874,13 @@ p {
 .card-title {
     font-size: 1.5em;
     font-weight: 600;
-    width: 335px;
+    max-width: 370px !important;
     color: rgb(241, 241, 241);
     z-index: 2;
 }
 .card-text {
     font-size: 0.9em;
-    width: 335px;
+    max-width: 370px !important;
     color: rgb(241, 241, 241);
     z-index: 2;
 }
@@ -926,13 +926,6 @@ p {
     }
     .msform3 #closeBtn {
         margin-bottom: 10px;
-    }
-    .card-title {
-        color: red;
-        max-width: 335px;
-    }
-    .card-text {
-        max-width: 335px;
     }
 }
 @media (width < 768px) {
