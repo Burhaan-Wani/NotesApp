@@ -916,7 +916,7 @@ p {
     background-color: rgb(56, 56, 56);
 }
 
-/* @media (width < 768px) {
+@media (width < 768px) {
     .modal-background .modal {
         width: 75%;
         height: 55%;
@@ -925,7 +925,7 @@ p {
     .msform3 #closeBtn {
         margin-bottom: 10px;
     }
-} */
+}
 @media (768px <= width <= 992px) {
     .modal-background .modal {
         width: 60%;
