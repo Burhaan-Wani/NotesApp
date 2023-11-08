@@ -937,6 +937,12 @@ p {
     .msform3 #closeBtn {
         margin-bottom: 10px;
     }
+    .card-title {
+        max-width: 370px !important;
+    }
+    .card-text {
+        max-width: 370px !important;
+    }
 }
 @media (768px <= width <= 992px) {
     .modal-background .modal {
